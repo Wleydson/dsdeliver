@@ -17,7 +17,7 @@ public class OrderDTO {
     private Double longitude;
     private Instant moment;
     private OrderStatus status;
-    private List<ProductDTO> productDTOS;
+    private List<ProductDTO> products;
 
     public OrderDTO() {
     }
@@ -38,6 +38,6 @@ public class OrderDTO {
         this.longitude = order.getLongitude();
         this.moment = order.getMoment();
         this.status = order.getStatus();
-        this.productDTOS = order.getProducts().stream().map(obj -> new ProductDTO(obj)).collect(Collectors.toList());
+        this.products = order.getProducts().stream().map(obj -> new ProductDTO(obj)).collect(Collectors.toList());
     }
 }

@@ -30,4 +30,9 @@ public class Order {
     )
     private Set<Product> products = new HashSet<>();
 
+    @PrePersist
+    public void prePersist(){
+        setMoment(Instant.now());
+        setStatus(OrderStatus.PENDING);
+    }
 }
