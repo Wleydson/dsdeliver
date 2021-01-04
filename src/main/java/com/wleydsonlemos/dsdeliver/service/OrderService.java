@@ -3,6 +3,7 @@ package com.wleydsonlemos.dsdeliver.service;
 import com.wleydsonlemos.dsdeliver.dto.OrderDTO;
 import com.wleydsonlemos.dsdeliver.model.entity.Order;
 import com.wleydsonlemos.dsdeliver.model.entity.Product;
+import com.wleydsonlemos.dsdeliver.model.enumeration.OrderStatus;
 import com.wleydsonlemos.dsdeliver.repository.OrderRepository;
 import com.wleydsonlemos.dsdeliver.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
@@ -41,5 +42,13 @@ public class OrderService {
         Order entity = orderRepository.save(order);
 
         return new OrderDTO(entity);
+    }
+
+    @Transactional
+    public OrderDTO setDelivered(Long id){
+        Order order = orderRepository.getOne(id);
+        order.setStatus(OrderStatus.DELIVERED);
+        order = orderRepository.save(order);
+        return new OrderDTO(order);
     }
 }
