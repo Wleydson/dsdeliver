@@ -30,6 +30,9 @@ public class Order {
     )
     private Set<Product> products = new HashSet<>();
 
+    public Double getTotal(){
+        return products.stream().mapToDouble(Product::getPrice).sum();
+    }
     @PrePersist
     public void prePersist(){
         setMoment(Instant.now());

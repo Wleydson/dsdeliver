@@ -17,18 +17,21 @@ public class OrderDTO {
     private Double longitude;
     private Instant moment;
     private OrderStatus status;
+    private Double total;
     private List<ProductDTO> products;
 
     public OrderDTO() {
     }
 
-    public OrderDTO(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status) {
+    public OrderDTO(Long id, String address, Double latitude, Double longitude, Instant moment,
+                    OrderStatus status, Double total) {
         this.id = id;
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
         this.moment = moment;
         this.status = status;
+        this.total = total;
     }
 
     public OrderDTO(Order order) {
@@ -39,5 +42,6 @@ public class OrderDTO {
         this.moment = order.getMoment();
         this.status = order.getStatus();
         this.products = order.getProducts().stream().map(obj -> new ProductDTO(obj)).collect(Collectors.toList());
+        this.total = order.getTotal();
     }
 }
